@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DataTransferObjects\SteamGamesResponseData;
 use App\DataTransferObjects\SteamUser;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -20,7 +21,7 @@ class SteamService
             ->get('ISteamUser/GetPlayerSummaries/v0002/', [
                 'key' => config('services.steam.key'),
                 'steamids' => $steamIds,
-                'format' => 'json'
+                'format' => 'json',
             ]);
 
         $playerData = collect($response->json('response.players'));
@@ -32,7 +33,7 @@ class SteamService
         return $playerData;
     }
 
-    public function getOwnedGames($steamId): Collection
+    public function getOwnedGames($steamId): SteamGamesResponseData
     {
         $response = Http::baseUrl('https://api.steampowered.com/')
             ->get('IPlayerService/GetOwnedGames/v0001/', [
@@ -42,6 +43,6 @@ class SteamService
                 'include_appinfo' => true,
             ]);
 
-        return collect($response->json('response'));
+        return SteamGamesResponseData::fromResponse($response);
     }
 }

@@ -137,10 +137,9 @@ it('retrieves a list of the users owned games', function () {
         ], 200),
     ]);
     $response = $this->service->getOwnedGames($steamId);
-    $games = collect($response['games']);
 
-    expect($response['game_count'])->toBe($gameCount);
-    expect($games->first())
-        ->appid->toBe($gameId)
+    expect($response)->gameCount->toBe($gameCount);
+    expect($response->games->first())
+        ->appId->toBe($gameId)
         ->name->toBe($gameName);
 });
