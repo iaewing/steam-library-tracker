@@ -30,7 +30,7 @@ Fan out when you can. The sweep is embarrassingly parallel. If your environment 
 
 Read `composer.json` (installed packages tell you which checklist groups apply), the `pint.json` / PHPStan / Rector config, `.ai/rules/index.md` if present, and most important, map the `app/` tree. List every directory under `app/` (and any `Modules/`, `src/`, `packages/`, or domain root). Every folder beyond Laravel's default skeleton (`Http`, `Models`, `Providers`, `Console`, `Exceptions`) is a structural pattern the app committed to and a high-value rule waiting to be written: `Actions`, `Services`, `Data` or DTOs, `Queries`, `Repositories`, `ViewModels`, `Pipelines`, `Support`, `Enums`, `Contracts`, `Observers`, or `Domain` and module roots. Note each one. You will confirm how it is used in Step 2.
 
-This app has no Livewire/Inertia/Flux packages installed. Treat the frontend group as likely API-only: confirm from `resources/views` before spending time there, and skip the Livewire/Inertia/Flux dimensions.
+This app ships a frontend stack, so the frontend checklist group applies. Sweep it.
 
 Done when: you have the applicable checklist groups, the dimensions already recorded in `.ai/rules`, and a list of every non-default `app/` directory mapped to the pattern it represents.
 
@@ -88,7 +88,7 @@ Examples:
 
 - Models: `app/Models/**` in a default app, or `app/Modules/Blog/Models/**` / `src/Domain/Blog/**` in a modular one.
 - Controllers, routing, validation, responses: `app/Http/**`, or `app/Modules/*/Http/**` when each module owns its HTTP layer.
-- Actions, Services, DTOs: `app/Actions/**`, `app/Services/**`, `app/DataTransferObjects/**`, or the module path the app actually uses.
+- Actions, Services, DTOs: `app/Actions/**`, `app/Services/**`, `app/Data/**`, or the module path the app actually uses.
 - Tests: `tests/**`.
 - Migrations and database: `database/migrations/**`.
 - Truly app-wide (rare, e.g. auth retrieval): `app/**`.
