@@ -31,6 +31,20 @@
             </native:pressable>
             <row
                 ref="docs-link"
+                a11y-label="Get my Games"
+                a11y-hint="Opens the documentation in an in-app browser"
+                class="w-full items-center gap-3 rounded-lg border border-theme-outline bg-theme-surface-variant px-4 py-[14]"
+                @press="openGames"
+            >
+                <icon name="book.pages" class="text-theme-on-surface" :size="20" />
+                <text  class="flex-1 text-sm font-normal text-theme-on-surface">
+                    Get my Games
+                </text>
+                <icon name="arrow.up.right" class="text-theme-on-surface opacity-50" :size="16" />
+            </row>
+
+            <row
+                ref="docs-link"
                 a11y-label="Read the Docs"
                 a11y-hint="Opens the documentation in an in-app browser"
                 class="w-full items-center gap-3 rounded-lg border border-theme-outline bg-theme-surface-variant px-4 py-[14]"

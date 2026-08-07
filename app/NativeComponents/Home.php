@@ -13,9 +13,9 @@ class Home extends NativeComponent
         Browser::inApp('https://nativephp.com/docs/mobile');
     }
 
-    public function openTest(): void
+    public function openGames(): void
     {
-        $this->navigate(route('test'));
+        $this->navigate(route('mobile.test'));
     }
 
     public function openDiscord(): void
