@@ -8,7 +8,8 @@
     "nightwatch": false,
     "packages": [
         "nativephp/mobile",
-        "nativephp/mobile-browser"
+        "nativephp/mobile-browser",
+        "nativephp/mobile-ui"
     ],
     "sail": false,
     "skills": [
