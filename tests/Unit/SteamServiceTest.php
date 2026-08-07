@@ -104,3 +104,43 @@ describe('retrieving user details', function () {
             ->profileUrl->toBe('https://steamcommunity.com/profiles/76561198025702289/');
     });
 });
+
+it('retrieves a list of the users owned games', function () {
+    $steamId = '76561198025702288';
+    $gameCount = 1;
+    $gameId = 10;
+    $gameName = 'Counter-Strike';
+
+    Http::fake([
+        'api.steampowered.com/*' => Http::response([
+            'response' => [
+                'game_count' => $gameCount,
+                'games' => [
+                    [
+                        'appid' => $gameId,
+                        'name' => $gameName,
+                        'playtime_forever' => 1,
+                        'img_icon_url' => '6b0312cda02f5f777efa2f3318c307ff9acafbb5',
+                        'playtime_windows_forever' => 0,
+                        'playtime_mac_forever' => 0,
+                        'playtime_linux_forever' => 0,
+                        'playtime_deck_forever' => 0,
+                        'rtime_last_played' => 1362384000,
+                        'content_descriptorids' => [
+                            2,
+                            5,
+                        ],
+                        'playtime_disconnected' => 0,
+                    ],
+                ],
+            ],
+        ], 200),
+    ]);
+    $response = $this->service->getOwnedGames($steamId);
+    $games = collect($response['games']);
+
+    expect($response['game_count'])->toBe($gameCount);
+    expect($games->first())
+        ->appid->toBe($gameId)
+        ->name->toBe($gameName);
+});

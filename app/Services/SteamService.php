@@ -20,6 +20,7 @@ class SteamService
             ->get('ISteamUser/GetPlayerSummaries/v0002/', [
                 'key' => config('services.steam.key'),
                 'steamids' => $steamIds,
+                'format' => 'json'
             ]);
 
         $playerData = collect($response->json('response.players'));
@@ -29,5 +30,18 @@ class SteamService
         });
 
         return $playerData;
+    }
+
+    public function getOwnedGames($steamId): Collection
+    {
+        $response = Http::baseUrl('https://api.steampowered.com/')
+            ->get('ISteamUser/GetOwnedGames/v0002/', [
+                'key' => config('services.steam.key'),
+                'steamid' => $steamId,
+                'format' => 'json',
+                'include_appinfo' => true,
+            ]);
+
+        return collect($response->json('response'));
     }
 }
