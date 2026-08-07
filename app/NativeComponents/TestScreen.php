@@ -15,8 +15,8 @@ class TestScreen extends NativeComponent
         $steamResponse = $steam->getOwnedGames('76561198025702288');
 
         $topGames = $steamResponse->games
-           ->sortByDesc(fn (SteamGameData $game) => $game->playtimeForever)
-           ->take(5);
+            ->sortByDesc(fn (SteamGameData $game) => $game->playtimeForever)
+            ->take(5);
 
         return view('native.test-screen', [
             'games' => $topGames,
