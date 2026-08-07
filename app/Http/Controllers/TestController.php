@@ -12,6 +12,7 @@ class TestController extends Controller
     public function __invoke(Request $request)
     {
         dd('hello');
+
         return view('mobile.test');
     }
 }
