@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Data\SteamUser;
+use App\DataTransferObjects\SteamUser;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
