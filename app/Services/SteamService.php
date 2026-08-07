@@ -35,7 +35,7 @@ class SteamService
     public function getOwnedGames($steamId): Collection
     {
         $response = Http::baseUrl('https://api.steampowered.com/')
-            ->get('ISteamUser/GetOwnedGames/v0002/', [
+            ->get('IPlayerService/GetOwnedGames/v0001/', [
                 'key' => config('services.steam.key'),
                 'steamid' => $steamId,
                 'format' => 'json',
