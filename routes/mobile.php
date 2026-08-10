@@ -1,6 +1,9 @@
 <?php
 
 use App\NativeComponents\TestScreen as TestScreenAlias;
+use App\NativeComponents\Home;
 
-Route::native('/', Home::class);
-Route::native('/test', TestScreenAlias::class)->name('test');
+$mobile = fn (string $path = '') => '/mobile'.($path ? '/'.ltrim($path, '/') : '');
+
+Route::native($mobile(), Home::class);
+Route::native($mobile('/test'), TestScreenAlias::class)->name('test');

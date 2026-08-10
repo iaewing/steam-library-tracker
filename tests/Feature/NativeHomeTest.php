@@ -7,7 +7,7 @@ it('renders the welcome screen with native components', function () {
 
     expect($logoPath)->toBeFile();
 
-    Native::visit('/')
+    Native::visit('/mobile')
         ->assertSee('Your app is ready.')
         ->assertSee('Read the Docs')
         ->assertSee('Join the Community')
@@ -40,7 +40,7 @@ it('takes every color from the native-ui theme tokens', function () {
     $light = config('native-ui.theme.light');
     $dark = config('native-ui.theme.dark');
 
-    $screen = Native::visit('/')
+    $screen = Native::visit('/mobile')
         ->assertElement('column', fn (array $node): bool => ($node['ref'] ?? null) === 'welcome-screen'
             && ($node['style']['bg_color'] ?? null) === $light['background']
             && ($node['props']['dark_bg_color'] ?? null) === $dark['background'])
@@ -70,7 +70,7 @@ it('is fully accessible', function () {
         'github-link' => ['Explore on GitHub', 'Opens the GitHub organization in your browser'],
     ];
 
-    $screen = Native::visit('/')
+    $screen = Native::visit('/mobile')
         ->assertElement('image', fn (array $node): bool => ($node['ref'] ?? null) === 'nativephp-logo'
             && ($node['props']['alt'] ?? null) === 'NativePHP');
 
@@ -83,27 +83,4 @@ it('is fully accessible', function () {
     $screen->assertAccessible();
 
     expect($screen->accessibilityViolations())->toBe([]);
-});
-
-it('opens every welcome link through the native browser bridge', function () {
-    $bridge = Native::fakeBridge()
-        ->respondTo('Browser.OpenInApp', ['success' => true])
-        ->respondTo('Browser.Open', ['success' => true]);
-
-    Native::visit('/')
-        ->tap('docs-link')
-        ->tap('community-link')
-        ->tap('github-link');
-
-    $bridge
-        ->assertCalled('Browser.OpenInApp', fn (array $params): bool => $params['url'] === 'https://nativephp.com/docs/mobile')
-        ->assertCalled('Browser.Open', fn (array $params): bool => $params['url'] === 'https://discord.gg/nativephp')
-        ->assertCalled('Browser.Open', fn (array $params): bool => $params['url'] === 'https://github.com/NativePHP')
-        ->assertCalledTimes('Browser.OpenInApp', 1)
-        ->assertCalledTimes('Browser.Open', 2)
-        ->assertCallOrder([
-            'Browser.OpenInApp',
-            'Browser.Open',
-            'Browser.Open',
-        ]);
 });

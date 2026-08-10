@@ -11,8 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
-            Route::prefix('mobile')
-                ->name('mobile.')
+            Route::name('mobile.')
                 ->group(base_path('routes/mobile.php'));
         }
     )
