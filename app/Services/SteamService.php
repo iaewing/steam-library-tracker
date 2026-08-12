@@ -33,7 +33,7 @@ class SteamService
         return $playerData;
     }
 
-    public function getOwnedGames($steamId): SteamGamesResponseData
+    public function getOwnedGames(string $steamId): SteamGamesResponseData
     {
         $response = Http::baseUrl('https://api.steampowered.com/')
             ->get('IPlayerService/GetOwnedGames/v0001/', [
