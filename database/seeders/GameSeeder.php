@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -938,6 +939,7 @@ class GameSeeder extends Seeder
 
         $rows = array_map(function ($game) use ($now) {
             return [
+                'user_id'                     => User::query()->first()->id,
                 'external_id'                 => (string) $game['appid'],
                 'name'                        => $game['name'],
                 'playtime_2weeks'             => $game['playtime_2weeks'] ?? 0,
