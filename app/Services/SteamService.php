@@ -26,11 +26,9 @@ class SteamService
 
         $playerData = collect($response->json('response.players'));
 
-        $playerData = $playerData->map(function ($player) {
+        return $playerData->map(function ($player) {
             return SteamUser::fromSteamArray($player);
         });
-
-        return $playerData;
     }
 
     public function getOwnedGames(string $steamId): SteamGamesResponseData
