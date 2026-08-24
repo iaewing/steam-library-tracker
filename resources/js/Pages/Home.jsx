@@ -1,12 +1,15 @@
 export default function Home({ title = 'Steam Library Tracker', games }) {
+    function fetchGames() {
+    //     TODO: make a button here to fetch the current user's games. Upsert?
+    }
     return (
         <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
             <h1>{title}</h1>
-            <p>NativePHP + Inertia + React setup complete.</p>
-            {games?.gameCount !== undefined && <p>Total Games: {games.gameCount}</p>}
+            <h2>Fetch your Games</h2>
+            <input type="button" value="Click Click" onClick={fetchGames} />
             <ul>
-                {games?.games?.map((game) => (
-                    <li key={game.appid || game.id || game.name}>
+                {games?.map((game) => (
+                    <li key={game.name + '-' + game.appId}>
                         <h3>{game.name}</h3>
                     </li>
                 ))}
