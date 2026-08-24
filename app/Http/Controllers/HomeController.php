@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Services\SteamService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -12,15 +13,15 @@ class HomeController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(SteamService $steamService)
+    public function __invoke()
     {
         $this->mobileEntryPoint();
 
-        $games = $steamService->getOwnedGames('76561198025702288');
+        $games = Game::query()->get();
 
         return Inertia::render('Home', [
             'title' => 'Steam Library Tracker',
-            'games' => $games,
+            'games' => $games->toArray(),
         ]);
     }
 
