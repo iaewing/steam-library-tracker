@@ -1,3 +1,5 @@
+import GameCard from '@/Components/GameCard';
+
 export default function Home({ title = 'Steam Library Tracker', games }) {
     function fetchGames() {
     //     TODO: make a button here to fetch the current user's games. Upsert?
@@ -9,9 +11,7 @@ export default function Home({ title = 'Steam Library Tracker', games }) {
             <input type="button" value="Click Click" onClick={fetchGames} />
             <ul>
                 {games?.map((game) => (
-                    <li key={game.name + '-' + game.appId}>
-                        <h3>{game.name}</h3>
-                    </li>
+                    <GameCard game={game}/>
                 ))}
             </ul>
         </main>
