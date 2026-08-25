@@ -944,7 +944,7 @@ class GameSeeder extends Seeder
                 'name'                        => $game['name'],
                 'playtime_2weeks'             => $game['playtime_2weeks'] ?? 0,
                 'playtime_forever'            => $game['playtime_forever'] ?? 0,
-                'img_icon_url'                => $game['img_icon_url'] ?? '',
+                'img_icon_url'                => $this->buildImageUrl($game['appid'], $game['img_icon_url']) ?? '',
                 'has_community_visible_stats' => $game['has_community_visible_stats'] ?? false,
                 'created_at'                  => $now,
                 'updated_at'                  => $now,
@@ -952,5 +952,10 @@ class GameSeeder extends Seeder
         }, $data['response']['games']);
 
         DB::table('games')->insert($rows);
+    }
+
+    public function buildImageUrl(string $appId, string $imgUrl): string
+    {
+        return "https://media.steampowered.com/steamcommunity/public/images/apps/$appId/$imgUrl.jpg";
     }
 }
