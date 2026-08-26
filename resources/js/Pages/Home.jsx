@@ -9,11 +9,13 @@ export default function Home({ title = 'Steam Library Tracker', games }) {
             <h1>{title}</h1>
             <h2>Fetch your Games</h2>
             <input type="button" value="Click Click" onClick={fetchGames} />
-            <ul>
+            <div>
                 {games?.map((game) => (
-                    <GameCard game={game}/>
+                    <div className="p-2">
+                        <GameCard game={game} />
+                    </div>
                 ))}
-            </ul>
+            </div>
         </main>
     );
 }
