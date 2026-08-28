@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Services\SteamService;
-use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Native\Mobile\Edge\NativeRouter;
 
@@ -25,9 +23,10 @@ class HomeController extends Controller
         ]);
     }
 
-    private function mobileEntryPoint() {
+    private function mobileEntryPoint()
+    {
         if (
-            request()->getPort() === (int) config('nativephp.server.http_port')
+            request()->getPort() === (int)config('nativephp.server.http_port')
             && NativeRouter::isNativeRoute(config('nativephp.start_url'))
         ) {
             return redirect(config('nativephp.start_url'));

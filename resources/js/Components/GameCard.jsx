@@ -1,13 +1,19 @@
 import { formatMinutes } from '@/utils/formatters';
 import { useState } from 'react';
+import { router } from '@inertiajs/react';
 
 export default function GameCard({ game }) {
     const [completed, setCompleted] = useState(game.completed);
 
     function handleGameCompletedChange(event) {
-        setCompleted(event.target.checked);
+        const newState = event.target.checked;
+        setCompleted(newState);
 
-        // Do an API request here to the backend with completed and id
+        router.patch(`/games/${game.id}/completed`, {
+            completed: newState,
+        }, {
+            preserveScroll: true
+        });
     }
 
 
