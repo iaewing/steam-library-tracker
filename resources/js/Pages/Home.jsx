@@ -5,7 +5,7 @@ export default function Home({ title = 'Steam Library Tracker', games }) {
     //     TODO: make a button here to fetch the current user's games. Upsert?
     }
     return (
-        <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+        <main className="p-8">
             <h1>{title}</h1>
             <h2>Fetch your Games</h2>
             <input type="button" value="Click Click" onClick={fetchGames} />

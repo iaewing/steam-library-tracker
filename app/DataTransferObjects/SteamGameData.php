@@ -10,6 +10,7 @@ readonly class SteamGameData
      * @param  array<int>  $contentDescriptorIds
      */
     public function __construct(
+        public bool $completed,
         public int $appId,
         public string $name,
         public int $playtimeForever,
@@ -26,6 +27,7 @@ readonly class SteamGameData
     public static function fromArray(array $data): self
     {
         return new self(
+            completed: (bool) $data['completed'],
             appId: (int) $data['appid'],
             name: (string) ($data['name'] ?? ''),
             playtimeForever: (int) ($data['playtime_forever'] ?? 0),

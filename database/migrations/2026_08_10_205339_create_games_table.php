@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->boolean('completed')->default(false);
             $table->string('external_id');
             $table->string('name');
             $table->integer('playtime_2weeks');

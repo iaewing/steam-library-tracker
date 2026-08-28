@@ -940,6 +940,7 @@ class GameSeeder extends Seeder
         $rows = array_map(function ($game) use ($now) {
             return [
                 'user_id'                     => User::query()->first()->id,
+                'completed'                   => false,
                 'external_id'                 => (string) $game['appid'],
                 'name'                        => $game['name'],
                 'playtime_2weeks'             => $game['playtime_2weeks'] ?? 0,
