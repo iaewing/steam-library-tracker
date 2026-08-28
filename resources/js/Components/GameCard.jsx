@@ -18,17 +18,19 @@ export default function GameCard({ game }) {
 
 
     return (
-        <div key={game.name + '-' + game.appId} className="bg-indigo-200 rounded-xl p-4">
-            <div className="flex items-center justify-between">
-                <div className="flex">
-                    <img src={game.img_icon_url} />
-                    <div className="ml-2 text-xl truncate">{game.name}</div>
+        <a href={'https://store.steampowered.com/app/' + game.external_id} target="_blank" key={game.name + '-' + game.external_id}>
+            <div className="bg-indigo-200 rounded-xl p-4">
+                <div className="flex items-center justify-between">
+                    <div className="flex">
+                        <img src={game.img_icon_url} />
+                        <div className="ml-2 text-xl truncate">{game.name}</div>
+                    </div>
+                    <div>
+                        Completed: <input type="checkbox" onChange={(event) => handleGameCompletedChange(event)} checked={completed} />
+                    </div>
                 </div>
-                <div>
-                    Completed: <input type="checkbox" onChange={(event) => handleGameCompletedChange(event)} checked={completed} />
-                </div>
+                <p className="text-sm">Total Playtime: {formatMinutes(game.playtime_forever)}</p>
             </div>
-            <p className="text-sm">Total Playtime: {formatMinutes(game.playtime_forever)}</p>
-        </div>
+        </a>
     );
 }

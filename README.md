@@ -2,7 +2,7 @@ TODO:
 - [x] Render list of owned games on web view
 - [x] Render a game card with some basic details
 - [x] Allow a game to be marked completed - simple boolean for MVP
-- [ ] Click the card to go to the steam page
+- [x] Click the card to go to the steam page
 - [ ] Sort games by playtime, completed, name length
 - [ ] Fetch current user's games
 - [ ] Games should upsert
