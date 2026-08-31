@@ -31,7 +31,7 @@ rendering **EDGE** Blade elements. There is no web server and — for native UI 
   data-driven color (category identity colors, imagery) and belong in one PHP home (enum/model), never inline
   per view.
 - Use `native:icon` for iconography (SF Symbols on iOS, Material Icons on Android — cross-platform names like
-  `HomeController` resolve on both). Never use emoji characters in UI text, labels, or buttons unless the user explicitly
+  `home` resolve on both). Never use emoji characters in UI text, labels, or buttons unless the user explicitly
   asks for them. Prefer the **typed icon enums** (`App\Icons\Ios`, `App\Icons\Android`, `App\Icons\AndroidOutlined`,
   bound with `:ios` / `:android` — they're autocompletable and can't misspell a symbol name. The enums are
   generated, not shipped: **if `app/Icons/` doesn't exist yet, run `php artisan native-ui:generate-icons`
