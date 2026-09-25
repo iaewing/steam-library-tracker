@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { router } from '@inertiajs/react';
 
 export default function Home({ title = 'Steam Library Tracker', games, filters }) {
-    const [selectedSort, setSelectedSort] = useState(`${filters.sort}_${filters.direction}`);
+    const [selectedSort, setSelectedSort] = useState(`${filters.sort}:${filters.direction}`);
 
     const handleSortChange = (event) => {
         const value = event.target.value;
@@ -51,7 +51,7 @@ export default function Home({ title = 'Steam Library Tracker', games, filters }
 
             <div className="gap-4 grid grid-cols-2">
                 {games?.map((game) => (
-                    <div className="col-span-1">
+                    <div key={game.id} className="col-span-1">
                         <GameCard game={game} />
                     </div>
                 ))}
